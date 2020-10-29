@@ -1,22 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
- 
-  <link rel="stylesheet" href="./styles/style.css">
- 
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script src="./js/script.js"></script>
-  <title>Document</title>
-</head>
-<body>
-  <div class="container" id="title-container">
-    <h1>My Web App</h1>
-  </div>
-  <div class="container">
-    <button id="button">Click me now!</button>
-  </div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="styles/stylesindex.css" />
+    <script src="https://unpkg.com/konva@7.1.3/konva.min.js"></script>
+    <script src="https://unpkg.com/gifler@0.1.0/gifler.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> <!-- Incluir Bootstrap -->
+    <title>Epic Heroes Game: Rescuing Princess Sophie </title>
+  </head>
+  <body>
+    <!-- Game Intro -->
+    <div class="game-intro">
+      
+      <div id="ppal">
+      <img id="imagenfondo" src="./images/FondoMain.png" alt="FondoMain">
+      </div>
+
+    <!-- Contenedor No.1 Instrucciones -->
+      <div id="divmodal">
+        
+        <div id=divmodalback>
+          <button id="modal-btn" class="button">Game Instructions</button>
+            <div id="my-modal" class="modal">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <span class="close">&times;</span>  
+                </div>
+              
+                <div class="modal-body">
+                <p>¡Has sido elegid@ por los Dioses del Olimpio para rescatar a la princesa Sophie! </p>
+                <p>Elige tu EpicHero favorito para luchar contra tus adversarios; una vez los derrotes 
+                te darán pociones que te permitirán realizar conjuros para avanzar al siguiente nivel y cumplir tu misión. </p>
+                <p> No lo olvides, solo ¡tienes 3 vidas! por lo que deberás sobrevivir en esta lucha mágica.</p>
+                </div>
+              
+                <div class="modal-footer"></div>
+              </div>
+            </div>
+        </div>
+      </div>
+        
+
+      <!-- Contenedor No. Sex  Selector -->
+        <div id="div-character">
+          
+          <button id="select-character" class="button">Select your Character</button>
+          <!-- Contenedor No.2.1 Male Selector -->
+          <div id="divmale">
+            <button onclick="maleSelector()"id="select-male" class="button">Male</button>
+          </div>
+         <!-- Contenedor No.2 Female Selector -->
+          <div>
+            <button onclick="femaleSelector()" id="select-female" class="button">Female</button>
+          </div>
+        </div>
+
+        <!-- Contenedor Male -->
+        <div id="div-male" style="display: none">
+          <img src="./images/elf-male-der.png" alt="elf-male">
+          <img src="./images/wizard-male-der.png" alt="wizard-male">
+          <img src="./images/knifemale.png" alt="knife-male">
+          <img src="./images/shooter-male-der.png" alt="knife-male">
+        
+          <div id="selector-male">
+            <button onclick="characterSelector('elf-males')" id="elf-male" class="button">Elf</button>
+            <button onclick="characterSelector('wizard-males')" id="wizard-male" class="button">Wizard</button>
+            <button onclick="characterSelector('knight-males')" id="knight-male" class="button">Knight</button>
+            <button onclick="characterSelector('cyborg-males')" id="cyborg-male" class="button">Cyborg</button>
+          </div>
+        </div>
+
+        
+        <!-- Contenedor Female -->
+        <div id="div-female" style="display: none">
+          <img src="./images/elf-female-der.png" alt="elf-female">
+          <img src="./images/wizard-female-der.png" alt="wizard-female">
+          <img src="./images/knife-female.png" alt="knife-female">
+          <img src="./images/shooter-female-der.png" alt="knife-female">
+
+          <div id="selector-female">
+            <button onclick="characterSelector('elf-females')" id="elf-female" class="button">Elf</button>
+            <button onclick="characterSelector('wizard-females')" id="wizard-female" class="button">Wizard</button>
+            <button onclick="characterSelector('knight-females')" id="knight-female" class="button">Knight</button>
+            <button onclick="characterSelector('cyborg-females')" id="cyborg-female" class="button">Cyborg</button>
+          </div>
+        </div>
+          
+        <div id="link-to-game">
+          <a href="game.html" class="button">Next</a>
+        </div>
+        
+
+      
+      
+
+
+    </div>
+
+    <script type="text/javascript" src="js/scriptindex.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  </body>
 </html>

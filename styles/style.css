@@ -1,13 +1,83 @@
-#title-container {
-    background-color: black;
-  }
-   
-  h1 {
-    text-align: center;
-    color: white;
-  }
-   
-  .container {
-    width: 400px;
-    margin: 50px auto;
-  }
+@import url("https://fonts.googleapis.com/css2?family=Henny+Penny&display=swap");
+
+
+body {
+  padding: 100px;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+}
+
+#imagenfondo {
+  border: 0;
+  border-radius: 20px;
+}
+
+#game-board {
+  display: flex;
+}
+
+#div-canvas{
+position: absolute;
+margin: 180px 0 0 450px;
+}
+
+#canvas{
+  border: 0;
+  border-radius: 20px;
+  border-style: groove;
+}
+
+
+
+.button {
+  background-color:rgba(0, 0, 0, 0.3);
+  font-family: 'Henny Penny', cursive;
+ color: white;
+  font-size: 30px;
+  padding: 5px;
+  border: 0;
+  box-shadow: 0;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+
+.start-btn{
+  position: absolute;
+  margin: 560px 0 0 180px;
+  color: white;
+}
+
+#gamebtn{
+  position: absolute;
+  margin: 520px 0 0 550px;
+  
+}
+
+#exitbtn{
+  position: absolute;
+  margin: 100px 0 0 1100px;
+  
+}
+
+#potions {
+  position: fixed;
+  align-content: center;
+  align-items: center;
+}
+
+#lifepoints {
+  position: fixed;
+  margin-left: 700px;
+ 
+  align-content: center;
+  align-items: center;
+  
+}
+
+#potions img, #lifepoints img {
+  width:100px;
+  height: 80px
+} 
+

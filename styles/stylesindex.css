@@ -1,0 +1,231 @@
+@import url("https://fonts.googleapis.com/css2?family=Henny+Penny&display=swap");
+
+body {
+    padding: 100px;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+}
+
+.game-intro {
+    height: 100%;
+    width: 100%;
+   
+    padding: 0px 0 0 50px;
+    display: flex;
+}
+
+#ppal {
+    display: flex;
+}
+
+#imagenfondo {
+    border: 0;
+    border-radius: 20px;
+}
+
+#divmodal{
+    position: fixed;
+    padding: 260px 0 0 150px;
+}
+
+
+
+#modal-btn  {
+    background-color:rgba(0, 0, 0, 0.3);
+    font-family: 'Henny Penny', cursive;
+    font-size: 30px;
+    padding: 5px;
+    border: 0;
+    box-shadow: 0;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    
+}
+  
+  .logo-img {
+    padding: 0 0 100px 0;
+  }
+
+ 
+  /* Fading animation */
+  .fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+  
+  @-webkit-keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+  }
+  
+  @keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+  }
+  
+  :root {
+    --modal-duration: 1s;
+    --modal-color: #017732;
+  }
+  
+  .button {
+    background: #428bca;
+    padding: 1em 2em;
+    color: #fff;
+    border: 0;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background: #3876ac;
+  }
+  
+  .modal {
+    display: none;
+    position: fixed;
+    padding: 80px 30px 0 720px;
+    font-family: 'Henny Penny', cursive;
+    font-size: 25px;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: auto;
+    width: auto;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+
+  #divmodalback{
+      padding-left: 100px;
+  }
+  .modal-content {
+    margin: 10% auto;
+    width: 60%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+    animation-name: modalopen;
+    animation-duration: var(--modal-duration);
+  }
+  
+  .modal-header h2,
+  .modal-footer h3 {
+    margin: 0;
+  }
+  
+  .modal-header {
+    background: var(--modal-color);
+    padding: 15px;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  
+  .modal-body {
+    padding: 10px 20px;
+    background: #fff;
+  }
+  
+  .modal-footer {
+    background: var(--modal-color);
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  
+  .close {
+    color: #ccc;
+    float: right;
+    font-size: 30px;
+    color: #fff;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  @keyframes modalopen {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  
+  
+  .left {
+    width: 300px;
+    height: 300px;
+    border-style: groove;
+    background-color: red;
+    clip-path: polygon(13.3% 6.7%,86.7% 6.7%,86.7% 13.3%,73.3% 13.3%,73.3% 26.7%,90% 26.7%,90% 33.3%,86.7% 33.3%,86.7% 63.3%,83.3% 63.3%,83.3% 33.3%,73.3% 33.3%,73.3% 40%,60% 40%,60% 41.7%,73.3% 41.7%,73.3% 50%,80% 50%,80% 56.7%,76.7% 56.7%,76.7% 60%,56.7% 60%,56.7% 66.7%,90% 66.7%,90% 96.7%,66.7% 96.7%,66.7% 73.3%,30% 73.3%,30% 96.7%,10% 96.7%,10% 73.3%,23.3% 73.3%,23.3% 66.7%,50% 66.7%,50% 56.7%,70% 56.7%,70% 53.3%,33.3% 53.3%,33.3% 63.3%,30% 63.3%,30% 53.3%,20% 53.3%,20% 50%,66.7% 50%,66.7% 43.3%,53.3% 43.3%,53.3% 36.7%,66.7% 36.7%,66.7% 26.7%,16.7% 26.7%,16.7% 70%,13.3% 70%,13.3% 23.3%,66.7% 23.3%,66.7% 13.3%,13.3% 13.3%)  
+  }
+
+
+  .button {
+    background-color:rgba(0, 0, 0, 0.3);
+    font-family: 'Henny Penny', cursive;
+    font-size: 30px;
+    padding: 5px;
+    border: 0;
+    box-shadow: 0;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    
+    
+}
+
+#div-character{
+    position: fixed;
+    margin: 330px 0 0 250px
+    
+}
+
+#div-character img{
+    width: 60px;
+    height: 60px;
+}
+
+#link-to-game{
+    padding-left: 120px;
+}
+
+#elf-female, #elf-male {
+    margin: 0 0 0 40px;
+}
+
+#wizard-female, #wizard-male {
+    margin: 0 0 0 35px;
+    
+}
+
+#knight-female, #knight-male {
+    margin: 0 0 0 5px;
+}
+
+#cyborg-female, #cyborg-male {
+    margin: 0 0 0 20px;
+}
+
+#div-male, #div-female {
+    position: fixed;
+    margin: 380px 0 100px 580px;
+}
+
+#link-to-game {
+    position: fixed;
+    margin: 580px 0 0 950px
+}
+
+
+
