@@ -56,7 +56,7 @@ var lifethree = document.getElementById("lifepointthree");
 var timeControl = document.getElementById("timecontrol");
 var timeDiv = document.getElementById("div-time");
 var controlPot = 0;
-let vidaPlayer = 100; 
+let vidaPlayer = 300; 
 
 
 //Paso 3: Clase para generar Background
@@ -293,7 +293,7 @@ function startGame () {
   frames++;
   ctx.clearRect(0, 0, canvas.width, canvas.height);  
   
-  
+  limites.pruebaDrawWalls(newCar);
   newmapOne.draw();
   newmapTwo.draw();
   //newmapThree.draw(); 
@@ -301,8 +301,9 @@ function startGame () {
   rivalOne.draw();
   rivalTwo.draw();
   rivalThree.draw();
+  
   //rivalDragon.draw();
-  limites.pruebaDrawWalls(newCar);
+  
   conditionValidation();
   
   
@@ -396,9 +397,12 @@ retornoPosicion=()=>{
 
 function potionControl(){
   if (controlPot ===0) {
+    
     potionOneId.style.display="none"
     controlTime()
     controlPot=1;
+
+    
 
   } 
 }
@@ -409,11 +413,12 @@ var n = 0;
 var m = 0;
 var l = document.getElementById("number");
 window.setInterval(function(){
-  l.innerHTML = 120-n;
-  m=120-n;
-  timeControl.style=` "width: ${m}%" `;
-  console.log(` "width: ${m}%" `)
+  l.innerHTML = 100-n;
+  m=100-n;
+  //timeControl.style= m +'%';
+  timeControl.style.width= m +'%';
   n++;
+  
 },1000);
 }
 
