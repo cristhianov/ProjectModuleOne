@@ -57,6 +57,14 @@ var timeControl = document.getElementById("timecontrol");
 var timeDiv = document.getElementById("div-time");
 var controlPot = 0;
 let vidaPlayer = 300; 
+var musicExplore = document.getElementById("music-explore");
+var musicAccion = document.getElementById("music-accion");
+var numberCont = document.getElementById("number");
+var winResult = document.getElementById("ima-win");
+var loseResult = document.getElementById("ima-lose");
+var gameResult = 0; 
+
+var timePos = document.getElementById("timepos");
 
 
 //Paso 3: Clase para generar Background
@@ -200,14 +208,19 @@ function addSaxon (saxon) {
           if (enemyId === 0) {
             potionTwoId.style.display="inline"
             rivalOne.image.src="./images/vacio.png"
+            controlPot=5;
             
           };
           if (enemyId === 1) {
             potionThreeId.style.display="inline"
-            rivalTwo.image.src="./images/vacio.png"};
+            rivalTwo.image.src="./images/vacio.png"
+            controlPot=6;
+          };
           if (enemyId === 2) {
             potionFourId.style.display="inline"
-            rivalThree.image.src="./images/vacio.png"};
+            rivalThree.image.src="./images/vacio.png"
+            controlPot=7;
+          };
             
       }
       return saxonHealt;
@@ -221,6 +234,8 @@ function addSaxon (saxon) {
 
       if (viking.health <= 0) {
         console.log("Viking Muerto")
+        gameResult=1;
+        gameOver();
       }
       return vikingHealt;
   }
@@ -243,10 +258,18 @@ function addSaxon (saxon) {
     potionTwoId.style.display="none";
     potionThreeId.style.display="none";
     potionFourId.style.display="none";
+    timePos.style.display="none"
+    
     addViking(playerOne);
     addSaxon(enemyOne);
     addSaxon(enemyTwo);
     addSaxon(enemyThree);
+    musicExplore.play();
+    musicExplore.loop=true;
+    loseResult.style.display="none"
+    winResult.style.display="none"
+    gameResult=0;
+    controlPot=0;
     StartId=1;
 
     if (vidaPlayer <= 200) lifethree.style.display="none"
@@ -368,6 +391,7 @@ addEventListener('keydown', e => {
     break; 
 
     case 80: //activando pociones con tecla P
+    console.log(controlPot)
     potionControl();
     break;
   }
@@ -377,8 +401,17 @@ addEventListener('keydown', e => {
 gameOver=()=>{
   //requestId = undefined;
   console.log("no avanzar")
-  // requestId = 1;
-  // txt.fillText(`Game Over, your final scores is ${wallCounters}`, 0, 880);
+  requestId = 1;
+
+  if(gameResult===1) { //Perder
+    loseResult.style.display="inline"
+  }else if (gameResult===2){ //Ganar
+    winResult.style.display="inline"
+
+  }
+  
+  
+  
 }
 
 retornoPosicion=()=>{
@@ -402,9 +435,18 @@ function potionControl(){
     rivalTwo.image.src="./images/rivaltwo.png"
     rivalThree.image.src="./images/rivalthree.png"
     potionOneId.style.display="none"
+    timePos.style.display="inline"
+    
+    
     controlTime()
-    controlPot=1;
+    musicExplore.pause();
+    musicAccion.play();
+    controlPot=1; 
   } 
+  if (controlPot===7){
+    gameResult=2;
+    gameOver();
+  }
 }
 
 
@@ -413,12 +455,16 @@ var n = 0;
 var m = 0;
 var l = document.getElementById("number");
 window.setInterval(function(){
-  l.innerHTML = 100-n;
-  m=100-n;
+  l.innerHTML = 60-n;
+  m=60-n;
   //timeControl.style= m +'%';
-  timeControl.style.width= m +'%';
+  timeControl.style.width= ((m*100)/60) +'%';
   n++;
-  if(m<0) gameOver()
+  if(m<0) {
+    numberCont.style.display="none";
+    gameResult=1;
+    gameOver();
+  }
   
 },1000);
 }
