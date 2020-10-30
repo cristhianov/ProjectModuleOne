@@ -2,7 +2,7 @@
 
 
 body {
-  padding: 100px;
+  padding: 30px;
   align-items: center;
   align-content: center;
   align-self: center;
@@ -137,5 +137,8 @@ margin: 180px 0 0 450px;
 
 }
 
-
+#music-btn {
+  position: absolute;
+  margin: 630px 0 0 180px;
+}
   

@@ -65,6 +65,7 @@ var loseResult = document.getElementById("ima-lose");
 var gameResult = 0; 
 
 var timePos = document.getElementById("timepos");
+var musicBtn = document.getElementById("music-btn");
 
 
 //Paso 3: Clase para generar Background
@@ -402,6 +403,8 @@ gameOver=()=>{
   //requestId = undefined;
   console.log("no avanzar")
   requestId = 1;
+  musicExplore.pause()
+  musicAccion.pause()
 
   if(gameResult===1) { //Perder
     loseResult.style.display="inline"
