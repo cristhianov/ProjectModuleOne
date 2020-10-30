@@ -267,10 +267,10 @@ const newmapTwo = new createBackground(0, 0, canvas.width, canvas.height, "./ima
 const newmapThree = new createBackground(0, 0, canvas.width, canvas.height, "./images/pruebacapatres.jpg");
 const newCar = new creaCar(10, 80, 35, 35, imgPlayer);
 
-const rivalOne = new creaCar(180, 240, 35, 35, "./images/rivalone.png");  //rivaltronco
+const rivalOne = new creaCar(180, 240, 35, 35, "./images/vacio.png");  //rivaltronco
 console.log(rivalOne.image)
-const rivalTwo = new creaCar(270, 340, 40, 45, "./images/rivaltwo.png"); //rival junto a rio derecha
-const rivalThree = new creaCar(560, 280, 35, 40, "./images/rivalthree.png"); // rival fin del mapa
+const rivalTwo = new creaCar(270, 340, 40, 45, "./images/vacio.png"); //rival junto a rio derecha
+const rivalThree = new creaCar(560, 280, 35, 40, "./images/vacio.png"); // rival fin del mapa
 //const rivalDragon = new creaCar(465, 200, 50, 50, "./images/dragon.png"); //dragon
 const limites = new pruebaWalls(enemyWalls);
 
@@ -396,14 +396,14 @@ retornoPosicion=()=>{
   } 
 
 function potionControl(){
+  console.log(controlPot)
   if (controlPot ===0) {
-    
+    rivalOne.image.src="./images/rivalone.png"
+    rivalTwo.image.src="./images/rivaltwo.png"
+    rivalThree.image.src="./images/rivalthree.png"
     potionOneId.style.display="none"
     controlTime()
     controlPot=1;
-
-    
-
   } 
 }
 
@@ -418,6 +418,7 @@ window.setInterval(function(){
   //timeControl.style= m +'%';
   timeControl.style.width= m +'%';
   n++;
+  if(m<0) gameOver()
   
 },1000);
 }
