@@ -11,10 +11,10 @@ let requestId = 1;
 let movePlayer;
 let enemyWalls = [
   {x: 0, y: 0, w: 70, h: 70,isWalk:true}, //arbol inicial
-  {x: 75, y: 0, w: 70, h: 80,isWalk:true}, // 2 arboles 
+  {x: 75, y: 0, w: 70, h: 70,isWalk:true}, // 2 arboles 
   {x: 150, y: 0, w: 80, h: 55, isWalk:true}, // Ultimo  arbol 
-  {x: 0, y: 170, w: 35, h: 80, isWalk:true}, //peñasco para escalera izq
-  {x: 70, y: 170, w: 35, h: 80, isWalk:true}, //peñasco para escalera derecha
+  {x: 0, y: 170, w: 30, h: 70, isWalk:true}, //peñasco para escalera izq
+  {x: 70, y: 170, w: 30, h: 70, isWalk:true}, //peñasco para escalera derecha
   {x: 90, y: 140, w: 45, h: 100, isWalk:true}, // 1er peñasco derecha hasta jarrón 
   {x: 135, y: 140, w: 40, h: 65, isWalk:true}, // 1er peñasco derecha hasta limite 
   {x: 160, y: 110, w: 50, h: 70, isWalk:true}, // 2do peñasco derecha hasta limite 
@@ -29,19 +29,34 @@ let enemyWalls = [
   {x: 315, y: 0, w: 80, h: 145, isWalk:true}, // Peñasco sec 2  
   {x: 390, y: 0, w: 70, h: 205, isWalk:true}, // Peñasco sec 3
   {x: 500, y: 0, w: 90, h: 205, isWalk:true}, // Peñasco sec 4
-  {x: 570, y: 0, w: 90, h: 230, isWalk:true}, // Peñasco sec 5
+  {x: 575, y: 0, w: 90, h: 230, isWalk:true}, // Peñasco sec 5
   {x: 465, y: 140, w: 30, h: 65, isWalk:true}, // Entrada cueva
   {x: 320, y: 335, w: 290, h: 55, isWalk:true}, // Jardin parte baja
   {x: 390, y: 300, w: 160, h: 40, isWalk:true}, // Jardin parte arriba
-  {x: 370, y: 200, w: 50, h: 20, isWalk:true}, // aviso entrada cueva
-  {x: 440, y: 260, w: 110, h: 55, isWalk:true}, // Arbol parte abajo
-  {x: 450, y: 240, w: 90, h: 55, isWalk:true}, // Arbol parte central
+  {x: 370, y: 200, w: 50, h: 15, isWalk:true}, // aviso entrada cueva
+  {x: 440, y: 270, w: 110, h: 55, isWalk:true}, // Arbol parte abajo
+  {x: 450, y: 255, w: 90, h: 55, isWalk:true}, // Arbol parte central
  
  ];
 let contador = 0;
 let sexId;
 let imgPlayer = sessionStorage.getItem("personaje");
+let vikingArmy = [];
+let saxonArmy = [];
+let enemyId=0;
+let StartId=0;
+var potionOneId = document.getElementById("potionone");
+var potionTwoId = document.getElementById("potiontwo");
+var potionThreeId = document.getElementById("potionthree");
+var potionFourId = document.getElementById("potionfour");
 
+var lifeone = document.getElementById("lifepointone");
+var lifetwo = document.getElementById("lifepointtwo");
+var lifethree = document.getElementById("lifepointthree");
+var timeControl = document.getElementById("timecontrol");
+var timeDiv = document.getElementById("div-time");
+var controlPot = 0;
+let vidaPlayer = 100; 
 
 
 //Paso 3: Clase para generar Background
@@ -110,18 +125,159 @@ class creaCar extends createBackground{
 } 
 
 
+//Paso 6: Creando clases para luchar contra enemigos 
+
+// Clase general para personaje general / Rivales
+class characters {
+  constructor(health, strength) {
+      this.health = health;
+      this.strength = strength;
+  }
+attack () {
+   return this.strength
+}
+
+receiveDamage (damage) {
+   this.health -= damage;
+}
+}
+
+// Viking / Personaje Principal  (working) 
+class  mainCharacter extends characters {
+  constructor(name, health, strength){
+      super(health,strength);
+      this.name = name;
+      
+  }
+  receiveDamage (damage) {
+      this.health -= damage;
+      if (this.health > 0) {
+        console.log(this.health)
+        return `${this.name} has received ${damage} points of damage`;
+      }  else {
+      return `${this.name} has died in act of combat`;
+      }
+  }
+}
+
+// Saxon / Rivales 
+class rivals extends characters {
+  constructor(health, strength){
+      super(health,strength);
+  }
+  receiveDamage(damage){
+      this.health -= damage;
+      if (this.health > 0) {
+        console.log(this.health)  
+        return `A Saxon has received ${damage} points of damage`;
+      }  else {
+      return `A Saxon has died in combat`;
+      }
+  }
+}
+
+
+function addViking (viking) {
+  vikingArmy.push(viking);
+}
+
+
+function addSaxon (saxon) {
+  saxonArmy.push(saxon);
+}
+
+
+  function vikingAttack(){        //Player One (working)
+      const saxon = saxonArmy[enemyId];
+      console.log(saxon);
+      const viking = vikingArmy[0];
+      const saxonHealt = saxon.receiveDamage(viking.strength);
+      console.log(viking.strength)
+      console.log(`prueba ${saxon.health}`)
+      
+
+      if (saxon.health <= 0) {
+          if (enemyId === 0) {
+            potionTwoId.style.display="inline"
+            rivalOne.image.src="./images/vacio.png"
+            
+          };
+          if (enemyId === 1) {
+            potionThreeId.style.display="inline"
+            rivalTwo.image.src="./images/vacio.png"};
+          if (enemyId === 2) {
+            potionFourId.style.display="inline"
+            rivalThree.image.src="./images/vacio.png"};
+            
+      }
+      return saxonHealt;
+  
+  }
+
+  function saxonAttack(){       //Enemy One
+      const saxon = this.saxonArmy[enemyId];
+      const viking = this.vikingArmy[0];
+      const vikingHealt = viking.receiveDamage(saxon.strength);
+
+      if (viking.health <= 0) {
+        console.log("Viking Muerto")
+      }
+      return vikingHealt;
+  }
+
+  function showStatus(){
+  
+  if (this.vikingArmy.length === 0) {
+      return `Saxons have fought for their lives and survived another day...`;
+  } else if (this.saxonArmy.length === 0) {     
+      return `Vikings have won the war of the century!`;
+  } else {
+      return `Vikings and Saxons are still in the thick of battle.`;
+   }
+  }
+
+
+  function conditionValidation () {
+  
+  if(StartId===0){
+    potionTwoId.style.display="none";
+    potionThreeId.style.display="none";
+    potionFourId.style.display="none";
+    addViking(playerOne);
+    addSaxon(enemyOne);
+    addSaxon(enemyTwo);
+    addSaxon(enemyThree);
+    StartId=1;
+
+    if (vidaPlayer <= 200) lifethree.style.display="none"
+    if (vidaPlayer <= 100) lifetwo.style.display="none"
+
+
+  }
+}
+
+
+
+
+
 //Paso 6: Variables que me activan las clases
 
 const newmapOne = new createBackground(0, 0, canvas.width, canvas.height, "./images/pruebacapauno.jpg");
 const newmapTwo = new createBackground(0, 0, canvas.width, canvas.height, "./images/pruebacapados.jpg");
 const newmapThree = new createBackground(0, 0, canvas.width, canvas.height, "./images/pruebacapatres.jpg");
-const newCar = new creaCar(10, 80, 30, 30, imgPlayer);
+const newCar = new creaCar(10, 80, 35, 35, imgPlayer);
 
 const rivalOne = new creaCar(180, 240, 35, 35, "./images/rivalone.png");  //rivaltronco
-const rivalTwo = new creaCar(270, 340, 35, 45, "./images/rivaltwo.png"); //rival junto a rio derecha
-const rivalThree = new creaCar(560, 280, 45, 40, "./images/rivalthree.png"); // rival fin del mapa
-const rivalDragon = new creaCar(465, 200, 50, 50, "./images/dragon.png"); //dragon
+console.log(rivalOne.image)
+const rivalTwo = new creaCar(270, 340, 40, 45, "./images/rivaltwo.png"); //rival junto a rio derecha
+const rivalThree = new creaCar(560, 280, 35, 40, "./images/rivalthree.png"); // rival fin del mapa
+//const rivalDragon = new creaCar(465, 200, 50, 50, "./images/dragon.png"); //dragon
 const limites = new pruebaWalls(enemyWalls);
+
+const playerOne = new mainCharacter('playerone', 100, 20);
+const enemyOne = new mainCharacter('enemyone', 100, 20);
+const enemyTwo = new mainCharacter('enemytwo', 100, 20);
+const enemyThree = new mainCharacter('enemythree', 100, 20);
 
 
 
@@ -137,7 +293,7 @@ function startGame () {
   frames++;
   ctx.clearRect(0, 0, canvas.width, canvas.height);  
   
-  limites.pruebaDrawWalls(newCar);
+  
   newmapOne.draw();
   newmapTwo.draw();
   //newmapThree.draw(); 
@@ -145,7 +301,9 @@ function startGame () {
   rivalOne.draw();
   rivalTwo.draw();
   rivalThree.draw();
-  rivalDragon.draw();
+  //rivalDragon.draw();
+  limites.pruebaDrawWalls(newCar);
+  conditionValidation();
   
   
   
@@ -188,6 +346,29 @@ addEventListener('keydown', e => {
     movePlayer = "down";
     if (newCar.y+30 > canvas.height) newCar.y = canvas.height-30; 
     break; 
+
+    case 32: //atacando con barra espaciadora  
+    if (newCar.x < 200)  {
+      enemyId = 0; 
+      console.log("enenmy",enemyId)
+      vikingAttack();
+    } 
+    if (200 < newCar.x && newCar.x < 400 )  {
+      enemyId = 1; 
+      console.log("enenmy",enemyId)
+      vikingAttack();
+    } 
+
+    if (420<newCar.x)  {
+      enemyId = 2; 
+      console.log("enenmy",enemyId)
+      vikingAttack();
+    }     
+    break; 
+
+    case 80: //activando pociones con tecla P
+    potionControl();
+    break;
   }
 })
       
@@ -213,8 +394,28 @@ retornoPosicion=()=>{
 
   } 
 
+function potionControl(){
+  if (controlPot ===0) {
+    potionOneId.style.display="none"
+    controlTime()
+    controlPot=1;
+
+  } 
+}
 
 
+function controlTime() {
+var n = 0;
+var m = 0;
+var l = document.getElementById("number");
+window.setInterval(function(){
+  l.innerHTML = 120-n;
+  m=120-n;
+  timeControl.style=` "width: ${m}%" `;
+  console.log(` "width: ${m}%" `)
+  n++;
+},1000);
+}
 
 
-
+  

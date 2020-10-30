@@ -57,20 +57,19 @@ margin: 180px 0 0 450px;
 
 #exitbtn{
   position: absolute;
-  margin: 100px 0 0 1100px;
+  margin: 110px 0 0 1100px;
   
 }
 
 #potions {
-  position: fixed;
+  position: absolute;
   align-content: center;
   align-items: center;
 }
 
 #lifepoints {
-  position: fixed;
+  position: absolute;
   margin-left: 700px;
- 
   align-content: center;
   align-items: center;
   
@@ -81,3 +80,38 @@ margin: 180px 0 0 450px;
   height: 80px
 } 
 
+
+
+.progress {
+  width: 270px;
+  height: 100px;
+  position: absolute;
+  margin: 80px 0 0 870px;
+  background-color: rgb(110, 110, 110);
+  
+}
+
+
+#timepos{
+  position: absolute;
+  margin: 65px 0 0 780px;;
+  
+
+}
+
+.progress-bar-animated{
+  background-color: green;
+}
+
+.progress-bar-striped{
+  background-color: green;
+}
+
+.progress-bar-green {
+  background-color: rgb(7, 155, 14) !important;
+}
+
+#number {
+  font-size:50px;
+  color:#434343;
+}
