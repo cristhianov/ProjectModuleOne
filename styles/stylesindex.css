@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Henny+Penny&display=swap");
 
 body {
-    padding: 30px;
+    padding: 10px;
     align-items: center;
     align-content: center;
     align-self: center;
@@ -227,5 +227,21 @@ body {
     margin: 580px 0 0 950px
 }
 
+#final {
+  font-family: 'Henny Penny', cursive;
+  position: absolute;
+  margin: 710px 0 0 450px;
+  align-items: center;
+  justify-self: center;
+}
 
+#love {
+  position: absolute;
+  margin: 705px 0 0 535px;
+}
+
+#ironhack-logo{
+  position: absolute;
+  margin: 740px 0 0 560px;
+}
 

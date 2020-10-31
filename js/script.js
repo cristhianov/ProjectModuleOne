@@ -19,9 +19,9 @@ let enemyWalls = [
   {x: 135, y: 140, w: 40, h: 65, isWalk:true}, // 1er peñasco derecha hasta limite 
   {x: 160, y: 110, w: 50, h: 70, isWalk:true}, // 2do peñasco derecha hasta limite 
   {x: 200, y: 80, w: 50, h: 115, isWalk:true}, // 4to peñasco derecha hasta limite incluyendo piedra 
-  {x: 255, y: 0, w: 55, h: 235, isWalk:true}, // Rio  Sec1 
-  {x: 220, y: 220, w: 55, h: 15, isWalk:true}, // Rio  Sec2.1
-  {x: 220, y: 275, w: 55, h: 90, isWalk:true}, // Rio  Sec2.2 
+  {x: 255, y: 0, w: 55, h: 225, isWalk:true}, // Rio  Sec1 
+  {x: 220, y: 210, w: 55, h: 15, isWalk:true}, // Rio  Sec2.1
+  {x: 220, y: 265, w: 55, h: 90, isWalk:true}, // Rio  Sec2.2 
   {x: 185, y: 340, w: 55, h: 50, isWalk:true}, // Rio  Sec3
   {x: 115, y: 370, w: 65, h: 50, isWalk:true}, // Rio  Sec4
   {x: 40, y: 280, w: 35, h: 45, isWalk:true}, // Piedra sec Izq  
@@ -31,7 +31,7 @@ let enemyWalls = [
   {x: 500, y: 0, w: 90, h: 205, isWalk:true}, // Peñasco sec 4
   {x: 575, y: 0, w: 90, h: 230, isWalk:true}, // Peñasco sec 5
   {x: 465, y: 140, w: 30, h: 65, isWalk:true}, // Entrada cueva
-  {x: 320, y: 335, w: 290, h: 55, isWalk:true}, // Jardin parte baja
+  {x: 390, y: 335, w: 290, h: 55, isWalk:true}, // Jardin parte baja
   {x: 390, y: 300, w: 160, h: 40, isWalk:true}, // Jardin parte arriba
   {x: 370, y: 200, w: 50, h: 15, isWalk:true}, // aviso entrada cueva
   {x: 440, y: 270, w: 110, h: 55, isWalk:true}, // Arbol parte abajo
@@ -49,7 +49,6 @@ var potionOneId = document.getElementById("potionone");
 var potionTwoId = document.getElementById("potiontwo");
 var potionThreeId = document.getElementById("potionthree");
 var potionFourId = document.getElementById("potionfour");
-
 var lifeone = document.getElementById("lifepointone");
 var lifetwo = document.getElementById("lifepointtwo");
 var lifethree = document.getElementById("lifepointthree");
@@ -63,7 +62,6 @@ var numberCont = document.getElementById("number");
 var winResult = document.getElementById("ima-win");
 var loseResult = document.getElementById("ima-lose");
 var gameResult = 0; 
-
 var timePos = document.getElementById("timepos");
 var musicBtn = document.getElementById("music-btn");
 
@@ -83,7 +81,7 @@ class createBackground {
     this.image2.src = "./images/pruebacapados.jpg"
 
     }
-  draw () {    //Paso 2.1 Method para dibujar 
+  draw () {    //Paso 3.1 Method para dibujar 
     
     if (frames % 40 === 0) {
       this.image = this.image === this.image1 ? this.image2 : this.image1
@@ -151,7 +149,7 @@ receiveDamage (damage) {
 }
 }
 
-// Viking / Personaje Principal  (working) 
+// Paso 6: Clase para Personaje Principal 
 class  mainCharacter extends characters {
   constructor(name, health, strength){
       super(health,strength);
@@ -169,7 +167,7 @@ class  mainCharacter extends characters {
   }
 }
 
-// Saxon / Rivales 
+// Paso 7 : Clase para Enemigos  
 class rivals extends characters {
   constructor(health, strength){
       super(health,strength);
@@ -185,18 +183,16 @@ class rivals extends characters {
   }
 }
 
-
+// Paso 8: Funnciones para Atacar 
 function addViking (viking) {
   vikingArmy.push(viking);
 }
-
 
 function addSaxon (saxon) {
   saxonArmy.push(saxon);
 }
 
-
-  function vikingAttack(){        //Player One (working)
+function vikingAttack(){        //Ataca personaje Principal
       const saxon = saxonArmy[enemyId];
       console.log(saxon);
       const viking = vikingArmy[0];
@@ -228,7 +224,7 @@ function addSaxon (saxon) {
   
   }
 
-  function saxonAttack(){       //Enemy One
+  function saxonAttack(){       //Atacan Enemigos
       const saxon = this.saxonArmy[enemyId];
       const viking = this.vikingArmy[0];
       const vikingHealt = viking.receiveDamage(saxon.strength);
@@ -253,6 +249,8 @@ function addSaxon (saxon) {
   }
 
 
+  
+  // Paso 9: Dando inicio con condiciones iniciales
   function conditionValidation () {
   
   if(StartId===0){
@@ -260,7 +258,6 @@ function addSaxon (saxon) {
     potionThreeId.style.display="none";
     potionFourId.style.display="none";
     timePos.style.display="none"
-    
     addViking(playerOne);
     addSaxon(enemyOne);
     addSaxon(enemyTwo);
@@ -273,31 +270,24 @@ function addSaxon (saxon) {
     controlPot=0;
     StartId=1;
 
-    if (vidaPlayer <= 200) lifethree.style.display="none"
-    if (vidaPlayer <= 100) lifetwo.style.display="none"
+    
 
 
   }
 }
 
-
-
-
-
-//Paso 6: Variables que me activan las clases
+//Paso 10: Variables que me activan las clases
 
 const newmapOne = new createBackground(0, 0, canvas.width, canvas.height, "./images/pruebacapauno.jpg");
 const newmapTwo = new createBackground(0, 0, canvas.width, canvas.height, "./images/pruebacapados.jpg");
 const newmapThree = new createBackground(0, 0, canvas.width, canvas.height, "./images/pruebacapatres.jpg");
 const newCar = new creaCar(10, 80, 35, 35, imgPlayer);
-
 const rivalOne = new creaCar(180, 240, 35, 35, "./images/vacio.png");  //rivaltronco
 console.log(rivalOne.image)
 const rivalTwo = new creaCar(270, 340, 40, 45, "./images/vacio.png"); //rival junto a rio derecha
 const rivalThree = new creaCar(560, 280, 35, 40, "./images/vacio.png"); // rival fin del mapa
 //const rivalDragon = new creaCar(465, 200, 50, 50, "./images/dragon.png"); //dragon
 const limites = new pruebaWalls(enemyWalls);
-
 const playerOne = new mainCharacter('playerone', 100, 20);
 const enemyOne = new mainCharacter('enemyone', 100, 20);
 const enemyTwo = new mainCharacter('enemytwo', 100, 20);
@@ -305,34 +295,25 @@ const enemyThree = new mainCharacter('enemythree', 100, 20);
 
 
 
-//Paso 7: Activador del boton a traves del DOM
+//Paso 11: Activador del boton a traves del DOM
 window.onload = () => {
   document.getElementById('start-button').onclick = () => {
   startGame();
 }
 
 
-// Paso 8: Funcion stargame  y Update  
+// Paso 12: Funcion stargame  y Update  
 function startGame () {
   frames++;
   ctx.clearRect(0, 0, canvas.width, canvas.height);  
-  
   limites.pruebaDrawWalls(newCar);
   newmapOne.draw();
   newmapTwo.draw();
-  //newmapThree.draw(); 
   newCar.draw();
   rivalOne.draw();
   rivalTwo.draw();
   rivalThree.draw();
-  
-  //rivalDragon.draw();
-  
   conditionValidation();
-  
-  
-  
-  
   
   if(!requestId){ 
     gameOver()
@@ -342,7 +323,7 @@ function startGame () {
 }
 }
 
-// Paso 9: Validando tecla presionada por usuario
+// Paso 13: Validando tecla presionada por usuario
 addEventListener('keydown', e => {
   e.preventDefault();
   switch (e.keyCode) {
@@ -355,7 +336,6 @@ addEventListener('keydown', e => {
     case 39: //Desplanzado a la Derecha validando limite de mapa
     newCar.x += 10; 
     if (newCar.x+30 > canvas.width) newCar.x = canvas. width-30;
-    
     movePlayer = "der";
     break; 
       
@@ -363,7 +343,6 @@ addEventListener('keydown', e => {
     newCar.y -= 10; 
     movePlayer = "up";
     if (newCar.y < 0) newCar.y = 0; 
-    
     break; 
     
     case 40: //Desplanzado hacia abajo y validando limite mapa  
@@ -395,14 +374,18 @@ addEventListener('keydown', e => {
     console.log(controlPot)
     potionControl();
     break;
+
+    case 72: //
+    viking.health
+    if (vidaPlayer <= 200) lifethree.style.display="none"
+    if (vidaPlayer <= 100) lifetwo.style.display="none"
   }
 })
       
-// Paso 10: Informando Game Over
+// Paso 14: Informando Game Over
 gameOver=()=>{
   //requestId = undefined;
   console.log("no avanzar")
-  requestId = 1;
   musicExplore.pause()
   musicAccion.pause()
 
@@ -412,9 +395,10 @@ gameOver=()=>{
     winResult.style.display="inline"
 
   }
+  requestId = undefined;
   
   
-  
+  // Paso 15: Retornando a Posicion valida
 }
 
 retornoPosicion=()=>{
@@ -431,6 +415,8 @@ retornoPosicion=()=>{
 
   } 
 
+
+  // Paso 16: Activando pociones
 function potionControl(){
   console.log(controlPot)
   if (controlPot ===0) {
@@ -439,8 +425,6 @@ function potionControl(){
     rivalThree.image.src="./images/rivalthree.png"
     potionOneId.style.display="none"
     timePos.style.display="inline"
-    
-    
     controlTime()
     musicExplore.pause();
     musicAccion.play();
@@ -452,7 +436,7 @@ function potionControl(){
   }
 }
 
-
+// Paso 17: Controlando tiempo de pocion
 function controlTime() {
 var n = 0;
 var m = 0;
