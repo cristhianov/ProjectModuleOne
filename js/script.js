@@ -376,9 +376,14 @@ addEventListener('keydown', e => {
     break;
 
     case 72: //
-    viking.health
+    vidaPlayer-=50;    
     if (vidaPlayer <= 200) lifethree.style.display="none"
     if (vidaPlayer <= 100) lifetwo.style.display="none"
+    if (vidaPlayer <= 0) {
+      lifeone.style.display="none"
+      gameResult=1;
+      gameOver();
+    }
   }
 })
       
